@@ -2,12 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Person from './Person';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const mainApp = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <div>
+      <App />
+      <Person name="Toan New" age="28.5"/>
+      <Person name="Thanh New" age="32.5"/>
+    </div>
+  </React.StrictMode>
+  );
+
+ReactDOM.render(mainApp,
   document.getElementById('root')
 );
 
