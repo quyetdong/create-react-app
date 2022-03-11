@@ -9,10 +9,9 @@ export default function People() {
     { name: 'Tedu 3', age: 3 },
   ];
   const [people, setPeople] = useState(defaultPeople);
+  const [showPeople, setShowPeople] = useState(true);
 
-  const UpdatePeopleHandler = (e) => {
-    console.log(e);
-
+  const updatePeopleHandler = (e) => {
     const updatedPeople = [
       { name: people[1].name, age: people[1].age + 1, hobbies: people[1].hobbies },
       { name: people[2].name, age: people[2].age + 1, hobbies: people[2].hobbies },
@@ -21,17 +20,32 @@ export default function People() {
     setPeople(updatedPeople);
   }
 
-  const ChangeNameHandler = (person) => {
-    person.age += 1;
+  const changeNameHandler = (event, ind) => {
+    const updatedPeople = [...people];
+    updatedPeople[ind].name = event.target.value;
+    setPeople(updatedPeople);
+  }
+
+  const togglePeople = () => {
+    setShowPeople(!showPeople);
+  }
+
+  let peopleElement = null;
+  if (showPeople) {
+    peopleElement = <div>
+      {people.map((p, i) =>
+        <Person click={updatePeopleHandler} name={p.name} age={p.age} changeName={(e) => changeNameHandler(e, i)}>
+        {`${p.hobbies ? 'My hobbies are: ' + p.hobbies.join(', ') : ''}`}
+      </Person>
+      )}
+    </div>;
   }
 
   return (
     <div>
-      <Person click={UpdatePeopleHandler} name={people[0].name} age={people[0].age}>{`${people[0].hobbies ? 'My hobbies are: ' + people[0].hobbies.join(', ') : ''}`}</Person>
-      <Person click={UpdatePeopleHandler} name={people[1].name} age={people[1].age}>{`${people[1].hobbies ? 'My hobbies are: ' + people[1].hobbies.join(', ') : ''}`}</Person>
-      <Person click={UpdatePeopleHandler} name={people[2].name} age={people[2].age}>{`${people[2].hobbies ? 'My hobbies are: ' + people[2].hobbies.join(', ') : ''}`}</Person>
-      <button onClick={UpdatePeopleHandler}>Update People</button>
-      {/* <button onClick={() => UpdatePeopleHandler('ABC')}>Change name 2</button> */}
+      {peopleElement}
+      <button onClick={togglePeople}>Toggle People</button>
+      {/* <button onClick={() => updatePeopleHandler('ABC')}>Change name 2</button> */}
     </div>
   );
 }

@@ -10,10 +10,16 @@ import './Person.css';
 // }
 
 const Person = (props) => {
+  const style = {
+    color: 'red',
+    fontWeight: 'bold'
+  }
+
   return (
-    <div className="person" onClick={props.click}>
-      <p>This is {props.name}. I'm {props.age} years old</p>
+    <div className="person">
+      <p onClick={props.click}>This is <span style={style}>{props.name}</span>. I'm {props.age} years old</p>
       <p>{props.children}</p>
+      <input type="text" onChange={props.changeName} value={props.name} />
     </div>
   )
 }
