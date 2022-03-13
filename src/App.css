@@ -3,8 +3,29 @@
 }
 
 button {
-  border: 2px solid blue;
+  border: 1px solid blue;
+  padding: 8px;
+  margin: 10px 5px;
+  cursor: pointer;
+  font: inherit;
+  color: black;
+  background-color: white;
+}
+
+.hightLight {
+  background-color: #f5d6b1;
+}
+
+.red {
   color: red;
-  padding: 10px;
+}
+
+.bold {
   font-weight: bold;
 }
+
+/* const styles = {
+  font: 'inherit',
+  border: '1px solid blue',
+  cursor: 'pointer'
+} */

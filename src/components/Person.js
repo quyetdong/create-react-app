@@ -1,22 +1,21 @@
+import Radium from 'radium';
 import './Person.css';
 
-// function Person(props) {
-//   return (
-//     <div className="person">
-//       <h1>Name: {props.name}</h1>
-//       <p>Age: {props.age}</p>
-//     </div>
-//   );
-// }
 
 const Person = (props) => {
   const style = {
     color: 'red',
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  };
+
+  const personStyles = {
+    '@media (min-width: 550px)': {
+      width: '450px'
+    },
+  };
 
   return (
-    <div className="person">
+    <div className="person" style={personStyles}>
       <p onClick={props.click}>This is <span style={style}>{props.name}</span>. I'm {props.age} years old</p>
       <p>{props.children}</p>
       <input type="text" onChange={props.changeName} value={props.name} />
@@ -24,4 +23,4 @@ const Person = (props) => {
   )
 }
 
-export default Person;
+export default Radium(Person);
